@@ -1,4 +1,6 @@
+from datetime import datetime
 from flask import Flask, render_template
+import requests
 
 from create_plot import create_plot
 
@@ -23,4 +25,9 @@ def show_plot():
 
 @app.route('/plot_jinja')
 def show_plot_jinja():
-    return render_template('plot_jinja.html', img_path='static/plot.png')
+    catfact = requests.get('https://catfact.ninja/fact').json()
+    print(catfact)
+    return render_template('plot_jinja.html',
+                           img_path='static/plot.png',
+                           timestamp=f'{datetime.now()}',
+                           catfact=catfact)
