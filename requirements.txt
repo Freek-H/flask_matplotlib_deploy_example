@@ -1,3 +1,4 @@
 pandas  # Includes numpy
 matplotlib
 flask
+requests
